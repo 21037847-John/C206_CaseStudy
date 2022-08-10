@@ -15,8 +15,10 @@ public class menuMain {
 		// TODO Auto-generated method stub
 		//Creating arraylist to hold menu list
 		ArrayList <Western> westernList = new ArrayList<Western>();
-		ArrayList<Asian> asianList = new ArrayList<Asian>();
-		ArrayList<Vegetarian> vegetarianList = new ArrayList<Vegetarian>();
+		ArrayList <Asian> asianList = new ArrayList<Asian>();
+		ArrayList <Vegetarian> vegetarianList = new ArrayList<Vegetarian>();
+		ArrayList <Fruit> fruitList = new ArrayList<Fruit>();
+		ArrayList <Drink> drinkList = new ArrayList<Drink>();
 		
 		//pre-adding items inside the respective array lists
 		asianList.add(new Asian("1001", "ABC", "Asian", 5.00));
@@ -31,6 +33,15 @@ public class menuMain {
 		vegetarianList.add(new Vegetarian("1002", "DEF", "Vegetarian", 5.00));
 		vegetarianList.add(new Vegetarian("1003", "GHI", "Vegetarian", 5.00));
 		
+		fruitList.add(new Fruit("1001", "ABC", "Fruit", 2.50));
+		fruitList.add(new Fruit("1002", "DEF", "Fruit", 2.50));
+		fruitList.add(new Fruit("1003", "GHI", "Fruit", 2.50));
+		
+		drinkList.add(new Drink("1001", "ABC", "Drink", 2.50));
+		drinkList.add(new Drink("1002", "DEF", "Drink", 2.50));
+		drinkList.add(new Drink("1003", "GHI", "Drink", 2.50));
+		
+		
 		int option = 0;
 		
 		while(option != OPTION_QUIT) {
@@ -41,21 +52,70 @@ public class menuMain {
 				menuMain.viewAllWestern(westernList);
 				menuMain.viewAllAsian(asianList);
 				menuMain.viewAllVegetarian(vegetarianList);
+				menuMain.viewAllFruits(fruitList);
+				menuMain.viewAllDrinks(drinkList);
 			}
 			
 			else if(option == OPTION_ADD) {
 				menuMain.setHeader("ADD MENU");
 				TypeMenu();
-				int mainMenuOption = Helper.readInt("What do you want to add? (1 - Set Meals OR 2 - Sides (Fruits/Drinks) > ");
+				int mainMenuOption = Helper.readInt("What do you want to add? (1 - Set Meals OR 2 - Fruits/Drinks > ");
 				
 				if(mainMenuOption == 1) {
+					menuMain.setHeader("ADDING SET MEAL INTO MENU");
 					setMealsTypeMenu();
+					int setMealsOption = Helper.readInt("Pick an option (1 OR 2 OR 3) > ");
+					
+					//adding the respective set meals by category
+					if(setMealsOption == 1) {
+						Asian addAsianFood = inputAsian();
+						menuMain.addAsian(asianList, addAsianFood);
+						System.out.println("Asian set meal has been added!");
+					}
+					
+					else if(setMealsOption == 2) {
+						Western addWesternFood = inputWestern();
+						menuMain.addWestern(westernList, addWesternFood);
+						System.out.println("Western set meal has been added!");
+					}
+					
+					else if(setMealsOption == 3) {
+						Vegetarian addVegetarianFood = inputVegetarian();
+						menuMain.addVegetarian(vegetarianList, addVegetarianFood);
+						System.out.println("Vegetarian set meal has been added!");
+					}
+					
+					else {
+						System.out.println("You have entered an invalid Set Meal Option! You can only enter '1' OR '2' OR '3' as the options");
+					}
 					
 				}
 				
-				if(mainMenuOption == 2) {
+				else if(mainMenuOption == 2) {
+					menuMain.setHeader("ADDING SIDES INTO MENU");
 					sidesTypeMenu();
+					int sidesOption = Helper.readInt("Pick an option (1 OR 2) > ");
 					
+					if(sidesOption == 1) {
+						Fruit addFruit = inputFruit();
+						menuMain.addFruit(fruitList, addFruit);
+						System.out.println("Fruit has been added!");
+					}
+					
+					else if (sidesOption == 2) {
+						Drink addDrink = inputDrink();
+						menuMain.addDrink(drinkList, addDrink);
+						System.out.println("Drink has been added!");
+					}
+					
+					else {
+						System.out.println("You have entered an invalid Sides Option! You can only enter '1' OR '2' as the options");
+					}
+				}
+				
+
+				else {
+					System.out.println("You have entered an invalid option! Please try again!");
 				}
 				
 			}
@@ -88,7 +148,7 @@ public class menuMain {
 	}
 	
 	private static void TypeMenu() {
-		menuMain.setHeader("SIDES CATEGORIES");
+		menuMain.setHeader("MENU CATEGORIES");
 		System.out.println("1. Set Meals");
 		System.out.println("2. Sides (Fruits/Drinks)");
 	}
@@ -165,5 +225,129 @@ public class menuMain {
 		output += retrieveAllVegetarian(vegetarianList);
 		System.out.println(output);
 	}
+	
+	public static String retrieveAllFruits(ArrayList<Fruit> fruitList) {
+		String output = "";
+
+		for (int i = 0; i < fruitList.size(); i++) {
+
+			output += String.format("%-84s \n", fruitList.get(i).toString());
+		}
+		return output;
+	}
+
+	public static void viewAllFruits(ArrayList<Fruit> fruitList) {
+		menuMain.setHeader("FRUITS LIST");
+		String output = String.format("%-10s %-30s %-10s %-10s %-20s\n", "ID", "NAME", "PRICE",
+				"AVAILABILITY", "CATEGORY");
+		output += retrieveAllFruits(fruitList);
+		System.out.println(output);
+	}
+	
+	public static String retrieveAllDrinks(ArrayList<Drink> drinkList) {
+		String output = "";
+
+		for (int i = 0; i < drinkList.size(); i++) {
+
+			output += String.format("%-84s \n", drinkList.get(i).toString());
+		}
+		return output;
+	}
+
+	public static void viewAllDrinks(ArrayList<Drink> drinkList) {
+		menuMain.setHeader("DRINKS LIST");
+		String output = String.format("%-10s %-30s %-10s %-10s %-20s\n", "ID", "NAME", "PRICE",
+				"AVAILABILITY", "CATEGORY");
+		output += retrieveAllDrinks(drinkList);
+		System.out.println(output);
+	}
+	
+	// ================================= Option 2 Add (CRUD -
+		// Create)=================================
+		public static Western inputWestern() {
+			String ID = Helper.readString("Enter ID > ");
+			String name = Helper.readString("Enter name > ");
+			String category = Helper.readString("Enter category > ");
+			double price = Helper.readDouble("Enter price > ");
+
+			Western westernFood = new Western(ID, name, category, price);
+			return westernFood;
+
+		}
+
+		public static void addWestern(ArrayList<Western> westernList, Western westernFood) {
+
+			westernList.add(westernFood);
+
+		}
+
+		public static Asian inputAsian() {
+			String ID = Helper.readString("Enter ID > ");
+			String name = Helper.readString("Enter name > ");
+			String category = Helper.readString("Enter category > ");
+			double price = Helper.readDouble("Enter price > ");
+
+			Asian asianFood = new Asian(ID, name, category, price);
+			return asianFood;
+
+		}
+
+		public static void addAsian(ArrayList<Asian> asianList, Asian asianFood) {
+
+			asianList.add(asianFood);
+
+		}
+		
+		public static Vegetarian inputVegetarian() {
+			String ID = Helper.readString("Enter ID > ");
+			String name = Helper.readString("Enter name > ");
+			String category = Helper.readString("Enter category > ");
+			double price = Helper.readDouble("Enter price > ");
+
+			Vegetarian vegetarianFood = new Vegetarian(ID, name, category, price);
+			return vegetarianFood;
+
+		}
+
+		public static void addVegetarian(ArrayList<Vegetarian> vegetarianList, Vegetarian vegetarianFood) {
+
+			vegetarianList.add(vegetarianFood);
+
+		}
+		
+		public static Fruit inputFruit() {
+			String ID = Helper.readString("Enter ID > ");
+			String name = Helper.readString("Enter name > ");
+			String category = Helper.readString("Enter category > ");
+			double price = Helper.readDouble("Enter price > ");
+
+			Fruit fruit = new Fruit(ID, name, category, price);
+			return fruit;
+
+		}
+
+		public static void addFruit(ArrayList<Fruit> fruitList, Fruit fruit) {
+
+			fruitList.add(fruit);
+
+		}
+		
+		public static Drink inputDrink() {
+			String ID = Helper.readString("Enter ID > ");
+			String name = Helper.readString("Enter name > ");
+			String category = Helper.readString("Enter category > ");
+			double price = Helper.readDouble("Enter price > ");
+
+			Drink drink = new Drink(ID, name, category, price);
+			return drink;
+
+		}
+
+		public static void addDrink(ArrayList<Drink> drinkList, Drink drink) {
+
+			drinkList.add(drink);
+
+		}
+
 
 }
