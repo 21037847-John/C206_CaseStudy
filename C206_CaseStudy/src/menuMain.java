@@ -21,25 +21,25 @@ public class menuMain {
 		ArrayList <Drink> drinkList = new ArrayList<Drink>();
 		
 		//pre-adding items inside the respective array lists
-		asianList.add(new Asian("1001", "ABC", "Asian", 5.00));
-		asianList.add(new Asian("1002", "DEF", "Asian", 5.00));
-		asianList.add(new Asian("1003", "GHI", "Asian", 5.00));
+		asianList.add(new Asian(1001, "ABC", "Asian", 5.00));
+		asianList.add(new Asian(1002, "DEF", "Asian", 5.00));
+		asianList.add(new Asian(1003, "GHI", "Asian", 5.00));
 		
-		westernList.add(new Western("1001", "ABC", "Western", 5.00));
-		westernList.add(new Western("1002", "DEF", "Western", 5.00));
-		westernList.add(new Western("1003", "GHI", "Western", 5.00));
+		westernList.add(new Western(1001, "ABC", "Western", 5.00));
+		westernList.add(new Western(1002, "DEF", "Western", 5.00));
+		westernList.add(new Western(1003, "GHI", "Western", 5.00));
 		
-		vegetarianList.add(new Vegetarian("1001", "ABC", "Vegetarian", 5.00));
-		vegetarianList.add(new Vegetarian("1002", "DEF", "Vegetarian", 5.00));
-		vegetarianList.add(new Vegetarian("1003", "GHI", "Vegetarian", 5.00));
+		vegetarianList.add(new Vegetarian(1001, "ABC", "Vegetarian", 5.00));
+		vegetarianList.add(new Vegetarian(1002, "DEF", "Vegetarian", 5.00));
+		vegetarianList.add(new Vegetarian(1003, "GHI", "Vegetarian", 5.00));
 		
-		fruitList.add(new Fruit("1001", "ABC", "Fruit", 2.50));
-		fruitList.add(new Fruit("1002", "DEF", "Fruit", 2.50));
-		fruitList.add(new Fruit("1003", "GHI", "Fruit", 2.50));
+		fruitList.add(new Fruit(1001, "ABC", "Fruit", 2.50));
+		fruitList.add(new Fruit(1002, "DEF", "Fruit", 2.50));
+		fruitList.add(new Fruit(1003, "GHI", "Fruit", 2.50));
 		
-		drinkList.add(new Drink("1001", "ABC", "Drink", 2.50));
-		drinkList.add(new Drink("1002", "DEF", "Drink", 2.50));
-		drinkList.add(new Drink("1003", "GHI", "Drink", 2.50));
+		drinkList.add(new Drink(1001, "ABC", "Drink", 2.50));
+		drinkList.add(new Drink(1002, "DEF", "Drink", 2.50));
+		drinkList.add(new Drink(1003, "GHI", "Drink", 2.50));
 		
 		
 		int option = 0;
@@ -59,7 +59,7 @@ public class menuMain {
 			else if(option == OPTION_ADD) {
 				menuMain.setHeader("ADD MENU");
 				TypeMenu();
-				int mainMenuOption = Helper.readInt("What do you want to add? (1 - Set Meals OR 2 - Fruits/Drinks > ");
+				int mainMenuOption = Helper.readInt("What do you want to add? (1 - Set Meals OR 2 - Fruits/Drinks) > ");
 				
 				if(mainMenuOption == 1) {
 					menuMain.setHeader("ADDING SET MEAL INTO MENU");
@@ -121,6 +121,50 @@ public class menuMain {
 			}
 			
 			else if (option == OPTION_DELETE) {
+				TypeMenu();
+				int mainMenuOption = Helper.readInt("What do you want to add? (1 - Set Meals OR 2 - Fruits/Drinks) > ");
+				if(mainMenuOption == 1) {
+					setMealsTypeMenu();
+					int setMealsOption = Helper.readInt("Pick an option (1 OR 2 OR 3) > ");
+					
+					if(setMealsOption == 1) {
+						deleteAsian(asianList);
+					}
+					
+					else if(setMealsOption == 2) {
+						deleteWestern(westernList);
+					}
+					
+					else if(setMealsOption == 3) {
+						deleteVegetarian(vegetarianList);
+					}
+					
+					else {
+						System.out.println("Removing failed! You can ONLY enter '1' OR '2' OR '3' as the option");
+					}
+					
+				}
+				
+				else if(mainMenuOption == 2) {
+					sidesTypeMenu();
+					int sidesOption = Helper.readInt("Pick an option (1 OR 2) > ");
+					
+					if(sidesOption == 1) {
+						deleteFruit(fruitList);
+					}
+					
+					else if(sidesOption == 2) {
+						deleteDrink(drinkList);
+					}
+					
+					else {
+						System.out.println("Removing failed! You can ONLY enter '1' OR '2' as the option");
+					}
+				}
+				
+				else {
+					System.out.println("Invalid option entered");
+				}
 				
 			}
 			
@@ -133,6 +177,7 @@ public class menuMain {
 			}
 		}
 	}
+	
 	
 	private static void setMealsTypeMenu() {
 		menuMain.setHeader("SET MEALS CATEGORIES");
@@ -265,7 +310,7 @@ public class menuMain {
 	// ================================= Option 2 Add (CRUD -
 		// Create)=================================
 		public static Western inputWestern() {
-			String ID = Helper.readString("Enter ID > ");
+			int ID = Helper.readInt("Enter ID > ");
 			String name = Helper.readString("Enter name > ");
 			String category = Helper.readString("Enter category > ");
 			double price = Helper.readDouble("Enter price > ");
@@ -282,7 +327,7 @@ public class menuMain {
 		}
 
 		public static Asian inputAsian() {
-			String ID = Helper.readString("Enter ID > ");
+			int ID = Helper.readInt("Enter ID > ");
 			String name = Helper.readString("Enter name > ");
 			String category = Helper.readString("Enter category > ");
 			double price = Helper.readDouble("Enter price > ");
@@ -299,7 +344,7 @@ public class menuMain {
 		}
 		
 		public static Vegetarian inputVegetarian() {
-			String ID = Helper.readString("Enter ID > ");
+			int ID = Helper.readInt("Enter ID > ");
 			String name = Helper.readString("Enter name > ");
 			String category = Helper.readString("Enter category > ");
 			double price = Helper.readDouble("Enter price > ");
@@ -316,7 +361,7 @@ public class menuMain {
 		}
 		
 		public static Fruit inputFruit() {
-			String ID = Helper.readString("Enter ID > ");
+			int ID = Helper.readInt("Enter ID > ");
 			String name = Helper.readString("Enter name > ");
 			String category = Helper.readString("Enter category > ");
 			double price = Helper.readDouble("Enter price > ");
@@ -333,7 +378,7 @@ public class menuMain {
 		}
 		
 		public static Drink inputDrink() {
-			String ID = Helper.readString("Enter ID > ");
+			int ID = Helper.readInt("Enter ID > ");
 			String name = Helper.readString("Enter name > ");
 			String category = Helper.readString("Enter category > ");
 			double price = Helper.readDouble("Enter price > ");
@@ -348,6 +393,105 @@ public class menuMain {
 			drinkList.add(drink);
 
 		}
+		
+		// ================================= Option 3 Remove (CRUD -
+				// Delete)=================================
+		public static void deleteWestern(ArrayList<Western> westernList) {
+			boolean isDeleted = false;
+			int ID = Helper.readInt("Enter ID to remove > ");
+			for(int i = 0; i < westernList.size(); i++) {
+				int foodID = westernList.get(i).getID();
+				if(ID == foodID) {
+					westernList.remove(i);
+					isDeleted = true;
+				}
+			}
+			if(isDeleted == true) {
+				System.out.println("Western food ID : " + ID + " removed!");
+			}
+			
+			else {
+				System.out.println("Removing of food item failed!");
+			}	
+		}
+		
+		public static void deleteAsian(ArrayList<Asian> asianList) {
+			boolean isDeleted = false;
+			int ID = Helper.readInt("Enter ID to remove > ");
+			for(int i = 0; i < asianList.size(); i++) {
+				int foodID = asianList.get(i).getID();
+				if(ID == foodID) {
+					asianList.remove(i);
+					isDeleted = true;
+				}
+			}
+			if(isDeleted == true) {
+				System.out.println("Asian food ID : " + ID + " removed!");
+			}
+			
+			else {
+				System.out.println("Removing of food item failed!");
+			}	
+		}
+		
+		public static void deleteVegetarian(ArrayList<Vegetarian> vegetarianList) {
+			boolean isDeleted = false;
+			int ID = Helper.readInt("Enter ID to remove > ");
+			for(int i = 0; i < vegetarianList.size(); i++) {
+				int foodID = vegetarianList.get(i).getID();
+				if(ID == foodID) {
+					vegetarianList.remove(i);
+					isDeleted = true;
+				}
+			}
+			if(isDeleted == true) {
+				System.out.println("Vegetarian food ID : " + ID + " removed!");
+			}
+			
+			else {
+				System.out.println("Removing of food item failed!");
+			}	
+		}
+		
+		public static void deleteFruit(ArrayList<Fruit> fruitList) {
+			boolean isDeleted = false;
+			int ID = Helper.readInt("Enter ID to remove > ");
+			for(int i = 0; i < fruitList.size(); i++) {
+				int foodID = fruitList.get(i).getID();
+				if(ID == foodID) {
+					fruitList.remove(i);
+					isDeleted = true;
+				}
+			}
+			if(isDeleted == true) {
+				System.out.println("Fruit ID : " + ID + " removed!");
+			}
+			
+			else {
+				System.out.println("Removing of food item failed!");
+			}	
+		}
+		
+		public static void deleteDrink(ArrayList<Drink> drinkList) {
+			boolean isDeleted = false;
+			int ID = Helper.readInt("Enter ID to remove > ");
+			for(int i = 0; i < drinkList.size(); i++) {
+				int foodID = drinkList.get(i).getID();
+				if(ID == foodID) {
+					drinkList.remove(i);
+					isDeleted = true;
+				}
+			}
+			if(isDeleted == true) {
+				System.out.println("Drink ID : " + ID + " removed!");
+			}
+			
+			else {
+				System.out.println("Removing of food item failed!");
+			}	
+		}
+		
+		
 
 
 }
