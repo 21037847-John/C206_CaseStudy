@@ -6,7 +6,7 @@
 public class Fruit extends menu {
 	private String category;
 	
-	public Fruit(String ID, String name, String category, double price) {
+	public Fruit(int ID, String name, String category, double price) {
 		// TODO Auto-generated constructor stub
 		super(ID, name, price);
 		this.category = category;

@@ -9,7 +9,7 @@
 public class Western extends menu {
 	private String category;
 	
-	public Western(String ID, String name, String category, double price) {
+	public Western(int ID, String name, String category, double price) {
 		// TODO Auto-generated constructor stub
 		super(ID, name, price);
 		this.category = category;

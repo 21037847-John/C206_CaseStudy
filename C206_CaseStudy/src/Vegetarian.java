@@ -6,7 +6,7 @@
 public class Vegetarian extends menu {
 	private String category;
 	
-	public Vegetarian(String ID, String name, String category, double price) {
+	public Vegetarian(int ID, String name, String category, double price) {
 		// TODO Auto-generated constructor stub
 		super(ID, name, price);
 		this.category = category;

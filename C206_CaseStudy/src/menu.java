@@ -7,12 +7,12 @@
  *
  */
 public class menu {
-	private String ID;
+	private int ID;
 	private String name;
 	private double price;
 	private boolean isAvailable;
 
-	public menu(String ID, String name, double price) {
+	public menu(int ID, String name, double price) {
 		this.ID = ID;
 		this.name = name;
 		this.price = price;
@@ -20,7 +20,7 @@ public class menu {
 	}
 	
 	public String toString() {
-		String itemInfo = String.format("%-10s %-30s %-10.2f %-10s", ID,
+		String itemInfo = String.format("%-10d %-30s %-10.2f %-10s", ID,
 				name, price, showAvailability(isAvailable));
 		return itemInfo;
 	}
@@ -36,11 +36,11 @@ public class menu {
 		return avail;
 	}
 	
-	public String getID() {
+	public int getID() {
 		return ID;
 	}
 
-	public void setID(String iD) {
+	public void setID(int iD) {
 		ID = iD;
 	}
 
