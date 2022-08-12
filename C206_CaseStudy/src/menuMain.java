@@ -10,8 +10,9 @@ public class menuMain {
 	private static final int OPTION_ADD = 2;
 	private static final int OPTION_DELETE = 3;
 	private static final int OPTION_UPDATE = 4;
-	private static final int OPTION_QUIT = 6;
 	private static final int OPTION_ADD_ACC = 5;
+	private static final int OPTION_QUIT = 15;
+	private static final int OPTION_DEL_ACC = 6;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -225,6 +226,8 @@ public class menuMain {
 
 			else if (option == OPTION_ADD_ACC) {
 				addUserAcc(userList);
+			} else if (option == OPTION_DEL_ACC) {
+				delUserAcc(userList);
 			}
 
 			else if (option == OPTION_QUIT) {
@@ -262,7 +265,8 @@ public class menuMain {
 		System.out.println("2. Add Record");
 		System.out.println("3. Delete Record");
 		System.out.println("4. Update Record");
-		System.out.println("5. Quit");
+		System.out.println("5. Add User Accout");
+		System.out.println("6. Delete User Account");
 		Helper.line(80, "-");
 
 	}
@@ -708,6 +712,13 @@ public class menuMain {
 	}
 
 	public static void addUserAcc(ArrayList<userAccount> userList) {
+		int ID = Helper.readInt("Enter student ID > ");
+		String username = Helper.readString("Enter username > ");
+
+		userList.add(new userAccount(ID, username));
+	}
+
+	public static void delUserAcc(ArrayList<userAccount> userList) {
 		int ID = Helper.readInt("Enter student ID > ");
 		String username = Helper.readString("Enter username > ");
 
