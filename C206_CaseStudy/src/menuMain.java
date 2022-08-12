@@ -720,9 +720,21 @@ public class menuMain {
 
 	public static void delUserAcc(ArrayList<userAccount> userList) {
 		int ID = Helper.readInt("Enter student ID > ");
-		String username = Helper.readString("Enter username > ");
+		for (int i = 0; i < userList.size(); i++) {
+			if (userList.get(i).getStudentId() == ID) {
+				String ans = Helper.readString("Are you sure you want to delete " + ID + "'s account?(Yes or No) : ");
+				if (ans.equalsIgnoreCase("Yes")) {
+					userList.remove(i);
+					System.out.println("User account Deleted Successfully");
+				} else {
+					System.out.println("Think again before deleting.");
+				}
 
-		userList.add(new userAccount(ID, username));
+			} else {
+				System.out.println("Invalid student ID entered.");
+			}
+		}
+
 	}
 
 }
