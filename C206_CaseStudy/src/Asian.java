@@ -26,5 +26,4 @@ public class Asian extends menu {
 		output = String.format("%-63s %-20s", output, category);
 		return output;
 	}
-
 }
