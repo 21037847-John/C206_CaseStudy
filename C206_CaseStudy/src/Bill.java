@@ -31,5 +31,5 @@ public class Bill {
   public String getFruit() {
     return fruit;
   
-}
+  }
 }

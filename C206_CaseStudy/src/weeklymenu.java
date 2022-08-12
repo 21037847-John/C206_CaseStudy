@@ -1,6 +1,6 @@
 
 public class weeklymenu {
-
+	
   private int menuID;
   private String date;
   private String western;

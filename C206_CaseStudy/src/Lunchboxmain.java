@@ -710,7 +710,7 @@ public static void main(String[] args) {
 
 		  public static void viewAllParent(ArrayList<Account> parentList) {
 		    // TODO Auto-generated method stub
-		    C206_CaseStudy.setHeader("View parents");
+		    Lunchboxmain.setHeader("View parents");
 		    String output = String.format("%-10s %-15s %-15s %-20s %-5s \n", "Name", "Student ID", "Parent ID", "Email",
 		        "Password");
 		    output += retrieveAllParent(parentList);

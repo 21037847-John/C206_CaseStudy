@@ -95,4 +95,5 @@ public class DailyMenu {
     this.fruit3 = fruit3;
   }
 
+
 }
