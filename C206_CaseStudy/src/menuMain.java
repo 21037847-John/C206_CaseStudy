@@ -716,6 +716,8 @@ public class menuMain {
 		String username = Helper.readString("Enter username > ");
 
 		userList.add(new userAccount(ID, username));
+
+		System.out.println("Added Successfully");
 	}
 
 	public static void delUserAcc(ArrayList<userAccount> userList) {
