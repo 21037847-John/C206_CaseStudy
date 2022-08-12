@@ -10,7 +10,9 @@ public class menuMain {
 	private static final int OPTION_ADD = 2;
 	private static final int OPTION_DELETE = 3;
 	private static final int OPTION_UPDATE = 4;
-	private static final int OPTION_QUIT = 5;
+	private static final int OPTION_ADD_ACC = 5;
+	private static final int OPTION_QUIT = 15;
+	private static final int OPTION_DEL_ACC = 6;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -20,6 +22,7 @@ public class menuMain {
 		ArrayList<Vegetarian> vegetarianList = new ArrayList<Vegetarian>();
 		ArrayList<Fruit> fruitList = new ArrayList<Fruit>();
 		ArrayList<Drink> drinkList = new ArrayList<Drink>();
+		ArrayList<userAccount> userList = new ArrayList<userAccount>();
 
 		// pre-adding items inside the respective array lists
 		asianList.add(new Asian(1001, "ABC", "Asian", 5.00));
@@ -41,6 +44,8 @@ public class menuMain {
 		drinkList.add(new Drink(1001, "ABC", "Drink", 2.50));
 		drinkList.add(new Drink(1002, "DEF", "Drink", 2.50));
 		drinkList.add(new Drink(1003, "GHI", "Drink", 2.50));
+
+		userList.add(new userAccount(21037847, "john"));
 
 		int option = 0;
 
@@ -174,11 +179,12 @@ public class menuMain {
 			else if (option == OPTION_UPDATE) {
 				menuMain.setHeader("UPDATING SIDES FROM MENU");
 				TypeMenu();
-				int updateOption = Helper.readInt("What would you like to update? (1 - Set Meals OR 2 - Fruits/Drinks) > ");
-				if(updateOption == 1) {
+				int updateOption = Helper
+						.readInt("What would you like to update? (1 - Set Meals OR 2 - Fruits/Drinks) > ");
+				if (updateOption == 1) {
 					setMealsTypeMenu();
 					int setMealsOption = Helper.readInt("Pick an option (1 OR 2 OR 3) > ");
-					
+
 					if (setMealsOption == 1) {
 						updateAsian(asianList);
 					}
@@ -196,12 +202,12 @@ public class menuMain {
 					}
 
 				}
-				
-				else if(updateOption == 2) {
+
+				else if (updateOption == 2) {
 					menuMain.setHeader("UPDATING SIDES FROM MENU");
 					sidesTypeMenu();
 					int sidesOption = Helper.readInt("Pick an option (1 OR 2) > ");
-					
+
 					if (sidesOption == 1) {
 						updateFruit(fruitList);
 					}
@@ -213,9 +219,15 @@ public class menuMain {
 					else {
 						System.out.println("Updating failed! You can ONLY enter '1' OR '2' as the option");
 					}
-					
+
 				}
-				
+
+			}
+
+			else if (option == OPTION_ADD_ACC) {
+				addUserAcc(userList);
+			} else if (option == OPTION_DEL_ACC) {
+				delUserAcc(userList);
 			}
 
 			else if (option == OPTION_QUIT) {
@@ -253,7 +265,8 @@ public class menuMain {
 		System.out.println("2. Add Record");
 		System.out.println("3. Delete Record");
 		System.out.println("4. Update Record");
-		System.out.println("5. Quit");
+		System.out.println("5. Add User Accout");
+		System.out.println("6. Delete User Account");
 		Helper.line(80, "-");
 
 	}
@@ -558,9 +571,9 @@ public class menuMain {
 			System.out.println("Removing of food item failed!");
 		}
 	}
-	
+
 	// ================================= Option 4 Update (CRUD -
-		// Update)=================================
+	// Update)=================================
 	public static void updateWestern(ArrayList<Western> westernList) {
 		boolean isUpdated = false;
 		int ID = Helper.readInt("Enter ID to update > ");
@@ -568,30 +581,30 @@ public class menuMain {
 		String category = "Western";
 		double price = Helper.readDouble("Enter price > ");
 		boolean isAvailable = Helper.readBoolean("Is the item available? (Enter 'true' or 'false') > ");
-		
-		for(int i = 0; i < westernList.size(); i++) {
+
+		for (int i = 0; i < westernList.size(); i++) {
 			int foodID = westernList.get(i).getID();
-			if(foodID == ID) {
+			if (foodID == ID) {
 				westernList.get(i).setName(name);
 				westernList.get(i).setCategory(category);
 				westernList.get(i).setPrice(price);
 				westernList.get(i).setAvailable(isAvailable);
-				
+
 				isUpdated = true;
-			
+
 			}
 		}
-		
-		if(!isUpdated) {
+
+		if (!isUpdated) {
 			System.out.println("Update for Western ID: " + ID + " failed!");
 		}
-		
+
 		else {
 			System.out.println("Update for Western ID " + ID + " is successful!");
 		}
-		
+
 	}
-	
+
 	public static void updateAsian(ArrayList<Asian> asianList) {
 		boolean isUpdated = false;
 		int ID = Helper.readInt("Enter ID to update > ");
@@ -599,30 +612,30 @@ public class menuMain {
 		String category = "Asian";
 		double price = Helper.readDouble("Enter price > ");
 		boolean isAvailable = Helper.readBoolean("Is the item available? (Enter 'true' or 'false') > ");
-		
-		for(int i = 0; i < asianList.size(); i++) {
+
+		for (int i = 0; i < asianList.size(); i++) {
 			int foodID = asianList.get(i).getID();
-			if(foodID == ID) {
+			if (foodID == ID) {
 				asianList.get(i).setName(name);
 				asianList.get(i).setCategory(category);
 				asianList.get(i).setPrice(price);
 				asianList.get(i).setAvailable(isAvailable);
-				
+
 				isUpdated = true;
-			
+
 			}
 		}
-		
-		if(!isUpdated) {
+
+		if (!isUpdated) {
 			System.out.println("Update for Asian ID: " + ID + " failed!");
 		}
-		
+
 		else {
 			System.out.println("Update for Asian ID " + ID + " is successful!");
 		}
-		
+
 	}
-	
+
 	public static void updateVegetarian(ArrayList<Vegetarian> vegetarianList) {
 		boolean isUpdated = false;
 		int ID = Helper.readInt("Enter ID to update > ");
@@ -630,30 +643,30 @@ public class menuMain {
 		String category = "Vegetarian";
 		double price = Helper.readDouble("Enter price > ");
 		boolean isAvailable = Helper.readBoolean("Is the item available? (Enter 'true' or 'false') > ");
-		
-		for(int i = 0; i < vegetarianList.size(); i++) {
+
+		for (int i = 0; i < vegetarianList.size(); i++) {
 			int foodID = vegetarianList.get(i).getID();
-			if(foodID == ID) {
+			if (foodID == ID) {
 				vegetarianList.get(i).setName(name);
 				vegetarianList.get(i).setCategory(category);
 				vegetarianList.get(i).setPrice(price);
 				vegetarianList.get(i).setAvailable(isAvailable);
-				
+
 				isUpdated = true;
-			
+
 			}
 		}
-		
-		if(!isUpdated) {
+
+		if (!isUpdated) {
 			System.out.println("Update for Vegetarian ID: " + ID + " failed!");
 		}
-		
+
 		else {
 			System.out.println("Update for Vegetarian ID " + ID + " is successful!");
 		}
-		
+
 	}
-	
+
 	public static void updateDrink(ArrayList<Drink> drinkList) {
 		boolean isUpdated = false;
 		int ID = Helper.readInt("Enter ID to update > ");
@@ -661,30 +674,30 @@ public class menuMain {
 		String category = "Drink";
 		double price = Helper.readDouble("Enter price > ");
 		boolean isAvailable = Helper.readBoolean("Is the item available? (Enter 'true' or 'false') > ");
-		
-		for(int i = 0; i < drinkList.size(); i++) {
+
+		for (int i = 0; i < drinkList.size(); i++) {
 			int foodID = drinkList.get(i).getID();
-			if(foodID == ID) {
+			if (foodID == ID) {
 				drinkList.get(i).setName(name);
 				drinkList.get(i).setCategory(category);
 				drinkList.get(i).setPrice(price);
 				drinkList.get(i).setAvailable(isAvailable);
-				
+
 				isUpdated = true;
-			
+
 			}
 		}
-		
-		if(!isUpdated) {
+
+		if (!isUpdated) {
 			System.out.println("Update for Drink ID: " + ID + " failed!");
 		}
-		
+
 		else {
 			System.out.println("Update for Drink ID " + ID + " is successful!");
 		}
-		
+
 	}
-	
+
 	public static void updateFruit(ArrayList<Fruit> fruitList) {
 		boolean isUpdated = false;
 		int ID = Helper.readInt("Enter ID to update > ");
@@ -692,28 +705,42 @@ public class menuMain {
 		String category = "Fruit";
 		double price = Helper.readDouble("Enter price > ");
 		boolean isAvailable = Helper.readBoolean("Is the item available? (Enter 'true' or 'false') > ");
-		
-		for(int i = 0; i < fruitList.size(); i++) {
+
+		for (int i = 0; i < fruitList.size(); i++) {
 			int foodID = fruitList.get(i).getID();
-			if(foodID == ID) {
+			if (foodID == ID) {
 				fruitList.get(i).setName(name);
 				fruitList.get(i).setCategory(category);
 				fruitList.get(i).setPrice(price);
 				fruitList.get(i).setAvailable(isAvailable);
-				
+
 				isUpdated = true;
-			
+
 			}
 		}
-		
-		if(!isUpdated) {
+
+		if (!isUpdated) {
 			System.out.println("Update for Fruit ID: " + ID + " failed!");
 		}
-		
+
 		else {
 			System.out.println("Update for Fruit ID " + ID + " is successful!");
 		}
-		
+
+	}
+
+	public static void addUserAcc(ArrayList<userAccount> userList) {
+		int ID = Helper.readInt("Enter student ID > ");
+		String username = Helper.readString("Enter username > ");
+
+		userList.add(new userAccount(ID, username));
+	}
+
+	public static void delUserAcc(ArrayList<userAccount> userList) {
+		int ID = Helper.readInt("Enter student ID > ");
+		String username = Helper.readString("Enter username > ");
+
+		userList.add(new userAccount(ID, username));
 	}
 
 }
