@@ -109,7 +109,7 @@ public class menuMain {
 					}
 
 					else if (sidesOption == 2) {
-						Drink drink_add = menuMain.inputDrink(drinkList, drink_add );
+						Drink drink_add = menuMain.inputDrink(drinkList, drink_add);
 						menuMain.addDrink(drinkList, drink_add);
 						System.out.println("Drink has been added!");
 					}
@@ -456,9 +456,6 @@ public class menuMain {
 			drinkList.add(drink);
 		}
 		return drink_add;
-		
-
-		
 
 	}
 
@@ -729,6 +726,7 @@ public class menuMain {
 		userList.add(new userAccount(ID, username));
 
 		System.out.println("Added Successfully");
+		System.out.println("HIHI"");
 	}
 
 	public static void delUserAcc(ArrayList<userAccount> userList) {
