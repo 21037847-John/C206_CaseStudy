@@ -73,21 +73,15 @@ public class menuMain {
 
 					// adding the respective set meals by category
 					if (setMealsOption == 1) {
-						Asian addAsianFood = inputAsian();
-						menuMain.addAsian(asianList, addAsianFood);
-						System.out.println("Asian set meal has been added!");
+						addAsian(asianList);
 					}
 
 					else if (setMealsOption == 2) {
-						Western addWesternFood = inputWestern();
-						menuMain.addWestern(westernList, addWesternFood);
-						System.out.println("Western set meal has been added!");
+						addWestern(westernList);
 					}
 
 					else if (setMealsOption == 3) {
-						Vegetarian addVegetarianFood = inputVegetarian();
-						menuMain.addVegetarian(vegetarianList, addVegetarianFood);
-						System.out.println("Vegetarian set meal has been added!");
+						addVegetarian(vegetarianList);
 					}
 
 					else {
@@ -103,15 +97,11 @@ public class menuMain {
 					int sidesOption = Helper.readInt("Pick an option (1 OR 2) > ");
 
 					if (sidesOption == 1) {
-						Fruit addFruit = inputFruit();
-						menuMain.addFruit(fruitList, addFruit);
-						System.out.println("Fruit has been added!");
+						addFruit(fruitList);
 					}
 
 					else if (sidesOption == 2) {
-						Drink drink_add = menuMain.inputDrink(drinkList, drink_add );
-						menuMain.addDrink(drinkList, drink_add);
-						System.out.println("Drink has been added!");
+						addDrink(drinkList);
 					}
 
 					else {
@@ -373,99 +363,134 @@ public class menuMain {
 
 	// ================================= Option 2 Add (CRUD -
 	// Create)=================================
-	public static Western inputWestern() {
-		int ID = Helper.readInt("Enter ID > ");
-		String name = Helper.readString("Enter name > ");
-		String category = "Western";
-		double price = Helper.readDouble("Enter price > ");
-
-		Western westernFood = new Western(ID, name, category, price);
-		return westernFood;
-
-	}
-
-	public static void addWestern(ArrayList<Western> westernList, Western westernFood) {
-
-		westernList.add(westernFood);
-
-	}
-
-	public static Asian inputAsian() {
-		int ID = Helper.readInt("Enter ID > ");
-		String name = Helper.readString("Enter name > ");
-		String category = "Asian";
-		double price = Helper.readDouble("Enter price > ");
-
-		Asian asianFood = new Asian(ID, name, category, price);
-		return asianFood;
-
-	}
-
-	public static void addAsian(ArrayList<Asian> asianList, Asian asianFood) {
-
-		asianList.add(asianFood);
-
-	}
-
-	public static Vegetarian inputVegetarian() {
-		int ID = Helper.readInt("Enter ID > ");
-		String name = Helper.readString("Enter name > ");
-		String category = "Vegetarian";
-		double price = Helper.readDouble("Enter price > ");
-
-		Vegetarian vegetarianFood = new Vegetarian(ID, name, category, price);
-		return vegetarianFood;
-
-	}
-
-	public static void addVegetarian(ArrayList<Vegetarian> vegetarianList, Vegetarian vegetarianFood) {
-
-		vegetarianList.add(vegetarianFood);
-
-	}
-
-	public static Fruit inputFruit() {
-		int ID = Helper.readInt("Enter ID > ");
-		String name = Helper.readString("Enter name > ");
-		String category = "Fruit";
-		double price = Helper.readDouble("Enter price > ");
-
-		Fruit fruit = new Fruit(ID, name, category, price);
-		return fruit;
-
-	}
-
-	public static void addFruit(ArrayList<Fruit> fruitList, Fruit fruit) {
-
-		fruitList.add(fruit);
-
-	}
-
-	public static Drink inputDrink(ArrayList<Drink> drinkList, Drink drink_add) {
+	public static void addWestern(ArrayList<Western> westernList) {
 		int ID = Helper.readInt("Enter ID > ");
 		String name = Helper.readString("Enter name > ");
 		String category = "Drink";
 		double price = Helper.readDouble("Enter price > ");
+		boolean isAdded = false;
 
-		if (name.length() < 25 && price < 0) {
-			System.out.println("Cannot add Drink ID " + ID);
+		if (name.length() > 25 || price < 0) {
+			isAdded = false;
+		}
+
+		else {
+			Western western = new Western(ID, name, category, price);
+			westernList.add(western);
+			isAdded = true;
+		}
+
+		if (isAdded == true) {
+			System.out.println("Adding of vegetarian ID : " + ID + " is successful!");
+		}
+
+		else {
+			System.out.println("Adding of vegetarian ID " + ID + " failed!");
+		}
+	}
+
+	public static void addAsian(ArrayList<Asian> asianList) {
+		int ID = Helper.readInt("Enter ID > ");
+		String name = Helper.readString("Enter name > ");
+		String category = "Drink";
+		double price = Helper.readDouble("Enter price > ");
+		boolean isAdded = false;
+
+		if (name.length() > 25 || price < 0) {
+			isAdded = false;
+		}
+
+		else {
+			Asian asian = new Asian(ID, name, category, price);
+			asianList.add(asian);
+			isAdded = true;
+		}
+
+		if (isAdded == true) {
+			System.out.println("Adding of vegetarian ID : " + ID + " is successful!");
+		}
+
+		else {
+			System.out.println("Adding of vegetarian ID " + ID + " failed!");
+		}
+	}
+
+	public static void addVegetarian(ArrayList<Vegetarian> vegetarianList) {
+		int ID = Helper.readInt("Enter ID > ");
+		String name = Helper.readString("Enter name > ");
+		String category = "Drink";
+		double price = Helper.readDouble("Enter price > ");
+		boolean isAdded = false;
+
+		if (name.length() > 25 || price < 0) {
+			isAdded = false;
+		}
+
+		else {
+			Vegetarian vegetarian = new Vegetarian(ID, name, category, price);
+			vegetarianList.add(vegetarian);
+			isAdded = true;
+		}
+
+		if (isAdded == true) {
+			System.out.println("Adding of vegetarian ID : " + ID + " is successful!");
+		}
+
+		else {
+			System.out.println("Adding of vegetarian ID " + ID + " failed!");
+		}
+	}
+
+	public static void addFruit(ArrayList<Fruit> fruitList) {
+		int ID = Helper.readInt("Enter ID > ");
+		String name = Helper.readString("Enter name > ");
+		String category = "Drink";
+		double price = Helper.readDouble("Enter price > ");
+		boolean isAdded = false;
+
+		if (name.length() > 25 || price < 0) {
+			isAdded = false;
+		}
+
+		else {
+			Fruit fruit = new Fruit(ID, name, category, price);
+			fruitList.add(fruit);
+			isAdded = true;
+		}
+
+		if (isAdded == true) {
+			System.out.println("Adding of Fruit ID : " + ID + " is successful!");
+		}
+
+		else {
+			System.out.println("Adding of Fruit ID " + ID + " failed!");
+		}
+	}
+
+	public static void addDrink(ArrayList<Drink> drinkList) {
+		int ID = Helper.readInt("Enter ID > ");
+		String name = Helper.readString("Enter name > ");
+		String category = "Drink";
+		double price = Helper.readDouble("Enter price > ");
+		boolean isAdded = false;
+
+		if (name.length() > 25 || price < 0) {
+			isAdded = false;
 		}
 
 		else {
 			Drink drink = new Drink(ID, name, category, price);
 			drinkList.add(drink);
+			isAdded = true;
 		}
-		return drink_add;
-		
 
-		
+		if (isAdded == true) {
+			System.out.println("Adding of Drink ID : " + ID + " is successful!");
+		}
 
-	}
-
-	public static void addDrink(ArrayList<Drink> drinkList, Drink drink_add) {
-
-		drinkList.add(drink_add);
-
+		else {
+			System.out.println("Adding of Drink ID " + ID + " failed!");
+		}
 	}
 
 	// ================================= Option 3 Remove (CRUD -
@@ -577,15 +602,22 @@ public class menuMain {
 
 		for (int i = 0; i < westernList.size(); i++) {
 			int foodID = westernList.get(i).getID();
-			if (foodID == ID) {
-				westernList.get(i).setName(name);
-				westernList.get(i).setCategory(category);
-				westernList.get(i).setPrice(price);
-				westernList.get(i).setAvailable(isAvailable);
+			if (name.length() < 25 && price > 0) {
+				if (foodID == ID) {
+					westernList.get(i).setName(name);
+					westernList.get(i).setCategory(category);
+					westernList.get(i).setPrice(price);
+					westernList.get(i).setAvailable(isAvailable);
 
+				}
 				isUpdated = true;
-
 			}
+
+			else {
+
+				isUpdated = false;
+			}
+
 		}
 
 		if (!isUpdated) {
@@ -608,15 +640,22 @@ public class menuMain {
 
 		for (int i = 0; i < asianList.size(); i++) {
 			int foodID = asianList.get(i).getID();
-			if (foodID == ID) {
-				asianList.get(i).setName(name);
-				asianList.get(i).setCategory(category);
-				asianList.get(i).setPrice(price);
-				asianList.get(i).setAvailable(isAvailable);
+			if (name.length() < 25 && price > 0) {
+				if (foodID == ID) {
+					asianList.get(i).setName(name);
+					asianList.get(i).setCategory(category);
+					asianList.get(i).setPrice(price);
+					asianList.get(i).setAvailable(isAvailable);
 
+				}
 				isUpdated = true;
-
 			}
+
+			else {
+
+				isUpdated = false;
+			}
+
 		}
 
 		if (!isUpdated) {
@@ -639,15 +678,22 @@ public class menuMain {
 
 		for (int i = 0; i < vegetarianList.size(); i++) {
 			int foodID = vegetarianList.get(i).getID();
-			if (foodID == ID) {
-				vegetarianList.get(i).setName(name);
-				vegetarianList.get(i).setCategory(category);
-				vegetarianList.get(i).setPrice(price);
-				vegetarianList.get(i).setAvailable(isAvailable);
+			if (name.length() < 25 && price > 0) {
+				if (foodID == ID) {
+					vegetarianList.get(i).setName(name);
+					vegetarianList.get(i).setCategory(category);
+					vegetarianList.get(i).setPrice(price);
+					vegetarianList.get(i).setAvailable(isAvailable);
 
+				}
 				isUpdated = true;
-
 			}
+
+			else {
+
+				isUpdated = false;
+			}
+
 		}
 
 		if (!isUpdated) {
@@ -670,15 +716,22 @@ public class menuMain {
 
 		for (int i = 0; i < drinkList.size(); i++) {
 			int foodID = drinkList.get(i).getID();
-			if (foodID == ID) {
-				drinkList.get(i).setName(name);
-				drinkList.get(i).setCategory(category);
-				drinkList.get(i).setPrice(price);
-				drinkList.get(i).setAvailable(isAvailable);
+			if (name.length() < 25 && price > 0) {
+				if (foodID == ID) {
+					drinkList.get(i).setName(name);
+					drinkList.get(i).setCategory(category);
+					drinkList.get(i).setPrice(price);
+					drinkList.get(i).setAvailable(isAvailable);
 
+				}
 				isUpdated = true;
-
 			}
+
+			else {
+
+				isUpdated = false;
+			}
+
 		}
 
 		if (!isUpdated) {
@@ -701,15 +754,23 @@ public class menuMain {
 
 		for (int i = 0; i < fruitList.size(); i++) {
 			int foodID = fruitList.get(i).getID();
-			if (foodID == ID) {
-				fruitList.get(i).setName(name);
-				fruitList.get(i).setCategory(category);
-				fruitList.get(i).setPrice(price);
-				fruitList.get(i).setAvailable(isAvailable);
+			if (name.length() < 25 && price > 0) {
+				if (foodID == ID) {
+					fruitList.get(i).setName(name);
+					fruitList.get(i).setCategory(category);
+					fruitList.get(i).setPrice(price);
+					fruitList.get(i).setAvailable(isAvailable);
 
+				}
 				isUpdated = true;
 
 			}
+
+			else {
+
+				isUpdated = false;
+			}
+
 		}
 
 		if (!isUpdated) {
