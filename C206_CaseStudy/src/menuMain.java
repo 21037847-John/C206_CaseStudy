@@ -11,8 +11,8 @@ public class menuMain {
 	private static final int OPTION_DELETE = 3;
 	private static final int OPTION_UPDATE = 4;
 	private static final int OPTION_ADD_ACC = 5;
-	private static final int OPTION_QUIT = 15;
 	private static final int OPTION_DEL_ACC = 6;
+	private static final int OPTION_QUIT = 7;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -267,6 +267,7 @@ public class menuMain {
 		System.out.println("4. Update Record");
 		System.out.println("5. Add User Accout");
 		System.out.println("6. Delete User Account");
+		System.out.println("7. Quit");
 		Helper.line(80, "-");
 
 	}
