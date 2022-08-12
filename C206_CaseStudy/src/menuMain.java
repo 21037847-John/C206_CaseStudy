@@ -11,8 +11,8 @@ public class menuMain {
 	private static final int OPTION_DELETE = 3;
 	private static final int OPTION_UPDATE = 4;
 	private static final int OPTION_ADD_ACC = 5;
-	private static final int OPTION_QUIT = 15;
 	private static final int OPTION_DEL_ACC = 6;
+	private static final int OPTION_QUIT = 7;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -109,8 +109,8 @@ public class menuMain {
 					}
 
 					else if (sidesOption == 2) {
-						Drink addDrink = inputDrink();
-						menuMain.addDrink(drinkList, addDrink);
+						Drink drink_add = menuMain.inputDrink(drinkList, drink_add );
+						menuMain.addDrink(drinkList, drink_add);
 						System.out.println("Drink has been added!");
 					}
 
@@ -267,6 +267,7 @@ public class menuMain {
 		System.out.println("4. Update Record");
 		System.out.println("5. Add User Accout");
 		System.out.println("6. Delete User Account");
+		System.out.println("7. Quit");
 		Helper.line(80, "-");
 
 	}
@@ -440,20 +441,30 @@ public class menuMain {
 
 	}
 
-	public static Drink inputDrink() {
+	public static Drink inputDrink(ArrayList<Drink> drinkList, Drink drink_add) {
 		int ID = Helper.readInt("Enter ID > ");
 		String name = Helper.readString("Enter name > ");
 		String category = "Drink";
 		double price = Helper.readDouble("Enter price > ");
 
-		Drink drink = new Drink(ID, name, category, price);
-		return drink;
+		if (name.length() < 25 && price < 0) {
+			System.out.println("Cannot add Drink ID " + ID);
+		}
+
+		else {
+			Drink drink = new Drink(ID, name, category, price);
+			drinkList.add(drink);
+		}
+		return drink_add;
+		
+
+		
 
 	}
 
-	public static void addDrink(ArrayList<Drink> drinkList, Drink drink) {
+	public static void addDrink(ArrayList<Drink> drinkList, Drink drink_add) {
 
-		drinkList.add(drink);
+		drinkList.add(drink_add);
 
 	}
 
