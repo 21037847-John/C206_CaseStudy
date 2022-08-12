@@ -109,8 +109,8 @@ public class menuMain {
 					}
 
 					else if (sidesOption == 2) {
-						Drink addDrink = inputDrink(drinkList);
-						menuMain.addDrink(drinkList, addDrink);
+						Drink drink_add = menuMain.inputDrink(drinkList, drink_add );
+						menuMain.addDrink(drinkList, drink_add);
 						System.out.println("Drink has been added!");
 					}
 
@@ -441,38 +441,30 @@ public class menuMain {
 
 	}
 
-	public static Drink inputDrink(ArrayList<Drink> drinkList) {
+	public static Drink inputDrink(ArrayList<Drink> drinkList, Drink drink_add) {
 		int ID = Helper.readInt("Enter ID > ");
 		String name = Helper.readString("Enter name > ");
 		String category = "Drink";
 		double price = Helper.readDouble("Enter price > ");
+
+		if (name.length() < 25 && price < 0) {
+			System.out.println("Cannot add Drink ID " + ID);
+		}
+
+		else {
+			Drink drink = new Drink(ID, name, category, price);
+			drinkList.add(drink);
+		}
+		return drink_add;
 		
-			if(name.length() > 25 || price < 0) {
-				System.out.println("Cannot add drink");
-			}
-			
-			else {
-				Drink drink = new Drink(ID, name, category, price);
-				return drink;
-			}
-			return null;
-			
-			
-		
-			
-		
-	
-		
-		
-		
-		
+
 		
 
 	}
 
-	public static void addDrink(ArrayList<Drink> drinkList, Drink drink) {
-	
-		drinkList.add(drink);
+	public static void addDrink(ArrayList<Drink> drinkList, Drink drink_add) {
+
+		drinkList.add(drink_add);
 
 	}
 
