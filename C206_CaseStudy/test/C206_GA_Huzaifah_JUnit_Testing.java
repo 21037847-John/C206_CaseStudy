@@ -204,7 +204,7 @@ public class C206_GA_Huzaifah_JUnit_Testing {
 		allWestern= menuMain.retrieveAllWestern(westernList);
 		testOutput = String.format("%-10d %-30s %-10.2f %-10s %-20s\n", 1001, "ABC", 5.00, "Yes", "Western");
 		testOutput += String.format("%-10d %-30s %-10.2f %-10s %-20s\n", 1002, "DEF", 5.00, "Yes", "Western");
-		testOutput += String.format("%-10d %-30s %-10.2f %-10s %-20s\n", 1003, "GHI", 5.00, "Yes", "Western");
+//		testOutput += String.format("%-10d %-30s %-10.2f %-10s %-20s\n", 1003, "GHI", 5.00, "Yes", "Western");
 
 	
 		assertEquals("Test that viewAllWestern", testOutput, allWestern);
