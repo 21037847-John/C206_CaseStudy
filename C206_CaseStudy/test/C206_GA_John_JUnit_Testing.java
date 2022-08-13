@@ -51,10 +51,6 @@ public class C206_GA_John_JUnit_Testing {
 		uc3 = new userAccount(21456789, "Vessa");
 	}
 
-	@After
-	public void tearDown() throws Exception {
-	}
-
 	@Test
 	public void testAddAcc() {
 		// List is not null, so can add new item
@@ -66,7 +62,6 @@ public class C206_GA_John_JUnit_Testing {
 
 		// The account added is same as the item on the first item in the arrayList
 		assertSame("Test that account is added same as 1st item of the list?", uc1, userList.get(0));
-
 		// Add 2 more items, test if the size of the arraylist is 3
 		userList.add(uc2);
 		userList.add(uc3);
@@ -76,6 +71,44 @@ public class C206_GA_John_JUnit_Testing {
 		assertSame("Test if the 3rd item added is same as the 3rd item in arrayList?", uc3, userList.get(2));
 
 		// fail("Not yet implemented");
+	}
+
+	@Test
+	public void testDelAcc() {
+		// List is not null, so can del an item
+		assertNotNull("Test if there is a valid account ArrayList to delete item", userList);
+
+		// Del 1 item, see if the list size is reduce by 1
+		userList.add(uc1);
+		userList.add(uc2);
+		userList.remove(0);
+		assertEquals("Test that the user acc arraylist size is 1?", 1, userList.size());
+
+	}
+
+	@Test
+	public void testRetrieveAllAcc() {
+		// test if the list of camcorders retrieved from the SourceCentre is empty
+		ArrayList<userAccount> allCamcorder = userList;
+		String testOutput = "";
+		assertEquals("Check that ViewAllCamcorderlist", testOutput, allCamcorder);
+
+		// Given an empty list, after adding 2 items, test if the size of the list is 2
+		userList.add(uc1);
+		userList.add(uc2);
+		assertEquals("Test if that userAccount arraylist size is 2?", 2, userList.size());
+
+		// test if the expected output string same as the list of user Account retrieved
+		// from the CaseStudy
+
+		testOutput = String.format("%-10s %-30s \n", 21234567, "John");
+		testOutput += String.format("%-10s %-30s \n", 21345678, "Swathi");
+
+		assertEquals("Check that ViewAllCamcorderlist", testOutput, userList);
+	}
+
+	@After
+	public void tearDown() throws Exception {
 	}
 
 }

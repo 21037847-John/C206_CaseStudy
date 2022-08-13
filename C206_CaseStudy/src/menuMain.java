@@ -12,7 +12,8 @@ public class menuMain {
 	private static final int OPTION_UPDATE = 4;
 	private static final int OPTION_ADD_ACC = 5;
 	private static final int OPTION_DEL_ACC = 6;
-	private static final int OPTION_QUIT = 7;
+	private static final int OPTION_QUIT = 8;
+	private static final int OPTION_UPDATE_UA = 7;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -219,6 +220,8 @@ public class menuMain {
 				addUserAcc(userList);
 			} else if (option == OPTION_DEL_ACC) {
 				delUserAcc(userList);
+			} else if (option == OPTION_UPDATE_UA) {
+				updateUserAcc(userList);
 			}
 
 			else if (option == OPTION_QUIT) {
@@ -258,7 +261,8 @@ public class menuMain {
 		System.out.println("4. Update Record");
 		System.out.println("5. Add User Account");
 		System.out.println("6. Delete User Account");
-		System.out.println("7. Quit");
+		System.out.println("7. Update User Account");
+		System.out.println("8. Quit");
 		Helper.line(80, "-");
 
 	}
@@ -829,6 +833,38 @@ public class menuMain {
 			output += String.format("%-84s \n", userList.get(i).toString());
 		}
 		return output;
+	}
+
+	public static void updateUserAcc(ArrayList<userAccount> userList) {
+		boolean isUpdated = false;
+		int ID = Helper.readInt("Enter student ID to update > ");
+		String username = Helper.readString("Enter username > ");
+
+		for (int i = 0; i < userList.size(); i++) {
+			int studId = userList.get(i).getStudentId();
+			if (username != userList.get(i).getUsername()) {
+				if (studId == ID) {
+					userList.get(i).setUsername(username);
+
+				}
+				isUpdated = true;
+			}
+
+			else {
+
+				isUpdated = false;
+			}
+
+		}
+
+		if (!isUpdated) {
+			System.out.println("Update for Drink ID: " + ID + " failed!");
+		}
+
+		else {
+			System.out.println("Update for Drink ID " + ID + " is successful!");
+		}
+
 	}
 
 }
