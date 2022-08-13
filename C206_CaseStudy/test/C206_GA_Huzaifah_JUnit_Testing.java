@@ -38,13 +38,13 @@ public class C206_GA_Huzaifah_JUnit_Testing {
 
 	@Before
 	public void setUp() throws Exception {
-		w1 = new Western(1001, "ABC", "Western", 5.00);
-		w2 = new Western(1002, "DEF", "Western", 5.00);
-		w3 = new Western(1003, "GHI", "Western", 5.00);
+		w1 = new Western(1011, "test1", "Western", 3.00);
+		w2 = new Western(1012, "test2", "Western", 4.00);
+		w3 = new Western(1013, "test3", "Western", 5.00);
 
 		v1 = new Vegetarian(1001, "ABC", "Vegetarian", 5.00);
-		v2 = new Vegetarian(1001, "DEF", "Vegetarian", 5.00);
-		v3 = new Vegetarian(1001, "GHI", "Vegetarian", 5.00);
+		v2 = new Vegetarian(1002, "DEF", "Vegetarian", 5.00);
+		v3 = new Vegetarian(1003, "GHI", "Vegetarian", 5.00);
 
 		f1 = new Fruit(1001, "ABC", "Fruit", 2.50);
 		f2 = new Fruit(1002, "DEF", "Fruit", 2.50);
@@ -195,19 +195,23 @@ public class C206_GA_Huzaifah_JUnit_Testing {
 		assertEquals("Check that viewAllWestern", testOutput, allWestern);
 		
 		//Given an empty list, after adding 3 items, test if the size of the list is 3 - normal
+		
 		westernList.add(w1);
-		westernList.add(w2);
-		westernList.add(w3);
-		assertEquals("Test that Western arraylist size is 3", 3, westernList.size());
+		assertEquals("Test that Western arraylist size is 1", 1, westernList.size());
+		
+//		westernList.add(w2);
+//		assertEquals("Test that Western arraylist size is 2", 2, westernList.size());
+//		
+//		westernList.add(w3);
+//		assertEquals("Test that Western arraylist size is 3", 3, westernList.size());
 		
 		//test if the expected output string same as the list of Western retrieved from the SourceCentre	
-		allWestern= menuMain.retrieveAllWestern(westernList);
-		testOutput = String.format("%-10d %-30s %-10.2f %-10s %-20s\n", 1001, "ABC", 5.00, "Yes", "Western");
-		testOutput += String.format("%-10d %-30s %-10.2f %-10s %-20s\n", 1002, "DEF", 5.00, "Yes", "Western");
-//		testOutput += String.format("%-10d %-30s %-10.2f %-10s %-20s\n", 1003, "GHI", 5.00, "Yes", "Western");
-
+		allWestern = menuMain.retrieveAllWestern(westernList);
+		testOutput = String.format("%-10d %-30s %-10.2f %-10s %-20s\n",1011, "test", 3.00, "Yes", "Western");
+//		testOutput += String.format("%-10s %-30s %-10s %-10s %-20s\n","1002", "DEF", "5.00", "Yes", "Western");
+//		testOutput += String.format("%-10s %-30s %-10s %-10s %-20s\n","1003", "GHI", "5.00", "Yes", "Western");
 	
-		assertEquals("Test that viewAllWestern", testOutput, allWestern);
+		assertEquals("Test that viewAllWestern", allWestern, testOutput);
 		
 	}
 
