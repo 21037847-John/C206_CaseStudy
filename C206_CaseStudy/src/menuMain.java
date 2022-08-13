@@ -795,7 +795,7 @@ public class menuMain {
 		userList.add(new userAccount(ID, username));
 
 		System.out.println("Added Successfully");
-		System.out.println("HIHI");
+
 	}
 
 	public static void delUserAcc(ArrayList<userAccount> userList) {
