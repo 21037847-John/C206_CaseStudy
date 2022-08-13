@@ -105,6 +105,7 @@ public class C206_GA_John_JUnit_Testing {
 		testOutput += String.format("%-10s %-30s \n", 21345678, "Swathi");
 
 		assertEquals("Check that ViewAllCamcorderlist", testOutput, userList);
+		// ignore
 	}
 
 	@After
