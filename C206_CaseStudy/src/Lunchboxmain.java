@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 
 
@@ -129,15 +128,22 @@ public static void main(String[] args) {
 			                lunchbox bo = inputLunchBoxOrder();
 			                AddLunchBox(LunchBoxOrderList, bo);
 			              } else if (lunchbox == 3) {
-			                int deleteLunchBoxID = Helper.readInt("Enter Lunch Box ID to delete: ");
-			                DeleteLunchBox(LunchBoxOrderList, deleteLunchBoxID);
-			                System.out.println("Lunch Box Order deleted!");
+//			                int deleteLunchBoxID = Helper.readInt("Enter Lunch Box ID to delete: ");
+//			                DeleteLunchBox(LunchBoxOrderList, deleteLunchBoxID);
+			            	  Lunchboxmain.deleteOrderlunchbox(LunchBoxOrderList);
+			              }else if (lunchbox == 4) {
+			            	  Lunchboxmain.updateLunchbox(LunchBoxOrderList);
+			            	  
+			                
 			              } else {
-			                System.out.println("Invalid option");
+			                System.out.println("Quit");
 			              }
 			            } else if (useroption == 3) {
 			              ViewAllOrderBills(billList);
-			            } else if (useroption == 4) {
+			            }else if (useroption==4) {
+			            	Lunchboxmain.updateLunchbox(LunchBoxOrderList);
+			            	lunchBoxMenu();
+			            } else if (useroption == 5) {
 			              System.out.println("Goodbye!");
 			            } else {
 			              System.out.println("Invalid!");
@@ -239,9 +245,13 @@ public static void main(String[] args) {
 			                    lunchbox bo = inputLunchBoxOrder();
 			                    AddLunchBox(LunchBoxOrderList, bo);
 			                  } else if (lunchbox == 3) {
-			                    int deleteLunchBoxID = Helper.readInt("Enter Lunch Box ID to delete: ");
-			                    DeleteLunchBox(LunchBoxOrderList, deleteLunchBoxID);
+//			                    int deleteLunchBoxID = Helper.readInt("Enter Lunch Box ID to delete: ");
+//			                    DeleteLunchBox(LunchBoxOrderList, deleteLunchBoxID);
+			                	  deleteOrderlunchbox(LunchBoxOrderList);
 			                    System.out.println("Lunch Box Order deleted!");
+			                  }else if (lunchbox==4) {
+			                	  updateLunchbox(LunchBoxOrderList);
+			                	  
 			                  } else {
 			                    System.out.println("Invalid option");
 			                  }
@@ -316,7 +326,8 @@ public static void main(String[] args) {
 		    System.out.println("1. View Weekly Menu");
 		    System.out.println("2. Maintain Lunch Box Order");
 		    System.out.println("3. View Order Bill");
-		    System.out.println("4. Quit");
+		    System.out.println("4.Update menu");
+		    System.out.println("5. Quit");
 		    Helper.line(80, "-");
 		  }
 
@@ -325,8 +336,7 @@ public static void main(String[] args) {
 		    System.out.println("1. Add account");
 		    System.out.println("2. View account");
 		    System.out.println("3. Delete account");
-		    System.out.println("4. Update account");
-		    System.out.println("5. Quit");
+		    System.out.println("4. Quit");
 		    Helper.line(80, "-");
 		  }
 
@@ -353,11 +363,10 @@ public static void main(String[] args) {
 		  public static void lunchBoxMenu() {
 			Lunchboxmain.setHeader("MAINTAIN LUNCH BOX ORDER");
 		    System.out.println("1. View Lunch Box Order");
-		    
-		    
 		    System.out.println("2. Add/Place Lunch Box Order");
 		    System.out.println("3. Delete/Cancel Lunch Box Order");
-		    System.out.println("4. Quit");
+		    System.out.println("4. Update menu");
+		    System.out.println("5. Quit");
 		    Helper.line(80, "-");
 		  }
 
@@ -801,19 +810,85 @@ public static void main(String[] args) {
 		  }
 		                
 	
-		  public static void DeleteLunchBox(ArrayList<lunchbox > LunchBoxOrderList, int a) {
-		  boolean isDelete = false;
-		    for (int i = 0; i < LunchBoxOrderList.size(); i++) {
-		      if (a == LunchBoxOrderList.get(i).getOrderID()) {
-		        LunchBoxOrderList.remove(a);
-		        isDelete = true;
-
-		      }
-		    }
-		  }
-		}
+//		  public static void DeleteLunchBox(ArrayList<lunchbox > LunchBoxOrderList, int a) {
+//		  boolean isDelete = false;
+//		  
+//		    for (int i = 0; i < LunchBoxOrderList.size(); i++) {
+//		      if (a == LunchBoxOrderList.get(i).getOrderID()) {
+//		        LunchBoxOrderList.remove(a);
+//		        isDelete = true;
+//
+//		      }
+//		    }
+//		    if (isDelete == true) {
+//		        System.out.println("Lunch Box: is successfully removed");
+//		    } else {
+//		        System.out.println("Removing of Order Bill failed!");
+//		    }
+//		}
+//		  }
+//		
 		              
+public static void deleteOrderlunchbox(ArrayList<lunchbox> LunchBoxOrderList) {
+    
+    boolean isDeleted = false;
+    int ID = Helper.readInt("Enter ID to remove > ");
+    for (int i = 0; i < LunchBoxOrderList.size(); i++) {
+        int OrderBillID = LunchBoxOrderList.get(i).getOrderID();
+        if (ID == OrderBillID) {
+            LunchBoxOrderList.remove(i);
+            isDeleted = true;
+        }
+    }
+    if (isDeleted == true) {
+        System.out.println("Order Bill ID: " + ID + " is successfully removed");
+    } else {
+        System.out.println("Removing of Order Bill failed!");
+    }
+}
+//
+public static void updateLunchbox(ArrayList<lunchbox>LunchBoxOrderList ) {
+// public lunchbox (int orderID, String date, String setmeal, String drink, String fruit, double price)
+	boolean isUpdated = false;
+	int ID = Helper.readInt("Enter Order ID  > ");
+	String date = Helper.readString("Enter date > ");
+	String setmeal = Helper.readString("Enter the set meal");
+	String drink = Helper.readString("Enter the drink");
+	String fruit = Helper.readString("Enter fruit");
+	double price = Helper.readDouble("Enter price > ");
+	
+
+	for (int i = 0; i < LunchBoxOrderList.size(); i++) {
+		int foodID = LunchBoxOrderList.get(i).getOrderID();
+		 if (price <= 0) {
+			if (foodID == ID) {
+				LunchBoxOrderList.get(i).setDate(date);
+				LunchBoxOrderList.get(i).setSetmeal(setmeal);
+				LunchBoxOrderList.get(i).setDrink(drink);
+				LunchBoxOrderList.get(i).setFruit(fruit);
+				LunchBoxOrderList.get(i).setPrice(price);
+			}
+			isUpdated = true;
+	        } else {
+           isUpdated = false;
+        }
+	    }
+	    }
+	    
+{
+}
+
+
+}
+			
+			
+
+		
 
 
 
-   
+
+
+
+
+
