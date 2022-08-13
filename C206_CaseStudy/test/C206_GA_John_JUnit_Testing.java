@@ -84,14 +84,18 @@ public class C206_GA_John_JUnit_Testing {
 		userList.remove(0);
 		assertEquals("Test that the user acc arraylist size is 1?", 1, userList.size());
 
+		// del all item, see if list size is 0
+		userList.remove(1);
+		assertEquals("Test that the user acc arraylist size is 0?", 0, userList.size());
+
 	}
 
 	@Test
 	public void testRetrieveAllAcc() {
-		// test if the list of camcorders retrieved from the SourceCentre is empty
-		ArrayList<userAccount> allCamcorder = userList;
+		// test if the list of useraccount retrieved from the case_study is empty
+		ArrayList<userAccount> allUserAcc = userList;
 		String testOutput = "";
-		assertEquals("Check that ViewAllCamcorderlist", testOutput, allCamcorder);
+		assertEquals("Check that ViewAllCamcorderlist", userList, testOutput);
 
 		// Given an empty list, after adding 2 items, test if the size of the list is 2
 		userList.add(uc1);
@@ -105,7 +109,7 @@ public class C206_GA_John_JUnit_Testing {
 		testOutput += String.format("%-10s %-30s \n", 21345678, "Swathi");
 
 		assertEquals("Check that ViewAllCamcorderlist", testOutput, userList);
-		// ignore
+
 	}
 
 	@After
