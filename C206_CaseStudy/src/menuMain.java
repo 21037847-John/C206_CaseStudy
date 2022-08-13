@@ -10,10 +10,7 @@ public class menuMain {
 	private static final int OPTION_ADD = 2;
 	private static final int OPTION_DELETE = 3;
 	private static final int OPTION_UPDATE = 4;
-	private static final int OPTION_ADD_ACC = 5;
-	private static final int OPTION_DEL_ACC = 6;
-	private static final int OPTION_QUIT = 8;
-	private static final int OPTION_UPDATE_UA = 7;
+	private static final int OPTION_QUIT = 5;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -216,14 +213,6 @@ public class menuMain {
 
 			}
 
-			else if (option == OPTION_ADD_ACC) {
-				addUserAcc(userList);
-			} else if (option == OPTION_DEL_ACC) {
-				delUserAcc(userList);
-			} else if (option == OPTION_UPDATE_UA) {
-				updateUserAcc(userList);
-			}
-
 			else if (option == OPTION_QUIT) {
 				System.out.println("Bye!");
 			}
@@ -259,10 +248,7 @@ public class menuMain {
 		System.out.println("2. Add Record");
 		System.out.println("3. Delete Record");
 		System.out.println("4. Update Record");
-		System.out.println("5. Add User Account");
-		System.out.println("6. Delete User Account");
-		System.out.println("7. Update User Account");
-		System.out.println("8. Quit");
+		System.out.println("5. Quit");
 		Helper.line(80, "-");
 
 	}
@@ -784,85 +770,6 @@ public class menuMain {
 
 		else {
 			System.out.println("Update for Fruit ID " + ID + " is successful!");
-		}
-
-	}
-
-	public static void addUserAcc(ArrayList<userAccount> userList) {
-		int ID = Helper.readInt("Enter student ID > ");
-		String username = Helper.readString("Enter username > ");
-
-		userList.add(new userAccount(ID, username));
-
-		System.out.println("Added Successfully");
-
-	}
-
-	public static void delUserAcc(ArrayList<userAccount> userList) {
-		int ID = Helper.readInt("Enter student ID > ");
-		for (int i = 0; i < userList.size(); i++) {
-			if (userList.get(i).getStudentId() == ID) {
-				String ans = Helper.readString("Are you sure you want to delete " + ID + "'s account?(Yes or No) : ");
-				if (ans.equalsIgnoreCase("Yes")) {
-					userList.remove(i);
-					System.out.println("User account Deleted Successfully");
-				} else {
-					System.out.println("Think again before deleting.");
-				}
-
-			} else {
-				System.out.println("Invalid student ID entered.");
-			}
-		}
-
-	}
-
-	public static void viewUserAcc(ArrayList<userAccount> userList) {
-		System.out.println("VIEW USER ACCOUNTs");
-		String output = String.format("%-10s %-30s\n", "StudentID", "USERNAME");
-		output += retrieveAllUser(userList);
-		System.out.println(output);
-
-	}
-
-	public static String retrieveAllUser(ArrayList<userAccount> userList) {
-		String output = "";
-
-		for (int i = 0; i < userList.size(); i++) {
-
-			output += String.format("%-84s \n", userList.get(i).toString());
-		}
-		return output;
-	}
-
-	public static void updateUserAcc(ArrayList<userAccount> userList) {
-		boolean isUpdated = false;
-		int ID = Helper.readInt("Enter student ID to update > ");
-		String username = Helper.readString("Enter username > ");
-
-		for (int i = 0; i < userList.size(); i++) {
-			int studId = userList.get(i).getStudentId();
-			if (username != userList.get(i).getUsername()) {
-				if (studId == ID) {
-					userList.get(i).setUsername(username);
-
-				}
-				isUpdated = true;
-			}
-
-			else {
-
-				isUpdated = false;
-			}
-
-		}
-
-		if (!isUpdated) {
-			System.out.println("Update for Drink ID: " + ID + " failed!");
-		}
-
-		else {
-			System.out.println("Update for Drink ID " + ID + " is successful!");
 		}
 
 	}
